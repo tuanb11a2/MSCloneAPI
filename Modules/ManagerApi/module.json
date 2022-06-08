@@ -1,0 +1,13 @@
+{
+    "name": "ManagerApi",
+    "alias": "managerapi",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ManagerApi\\Providers\\ManagerApiServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
