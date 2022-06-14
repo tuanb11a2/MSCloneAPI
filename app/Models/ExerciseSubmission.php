@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ExerciseSubmission extends Model
@@ -18,11 +18,19 @@ class ExerciseSubmission extends Model
         'file_path'
     ];
 
+    /**
+     *
+     * @return BelongsTo
+     */
     public function exercises(): BelongsTo
     {
         return $this->belongsTo(Exercise::class);
     }
 
+    /**
+     *
+     * @return BelongsTo
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

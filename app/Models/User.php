@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Laravel\Scout\Searchable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
+use Laravel\Scout\Searchable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -67,45 +67,78 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+     /**
+     *
+     * @return HasMany
+     */
     public function userFriends(): HasMany
     {
         return $this->hasMany(Friend::class, "user_id");
     }
 
+     /**
+     *
+     * @return HasMany
+     */
     public function friendsUser(): HasMany
     {
         return $this->hasMany(Friend::class, "friend_id");
     }
 
+     /**
+     *
+     * @return HasMany
+     */
     public function sentMessages(): HasMany
     {
         return $this->hasMany(Message::class, "sender_id", "id");
     }
 
+     /**
+     *
+     * @return HasMany
+     */
     public function receivedMessages(): HasMany
     {
         return $this->hasMany(Message::class, "receiver_id", "id");
     }
 
+     /**
+     *
+     * @return HasMany
+     */
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
     }
 
+     /**
+     *
+     * @return BelongsToMany
+     */
     public function groups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class);
     }
 
+     /**
+     *
+     * @return BelongsToMany
+     */
     public function exercises(): BelongsToMany
     {
         return $this->belongsToMany(Exercise::class);
     }
 
+     /**
+     *
+     * @return HasMany
+     */
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
+
     /**
      * Get the indexable data array for the model.
      *
