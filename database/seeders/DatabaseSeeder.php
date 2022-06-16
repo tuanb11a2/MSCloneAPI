@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
         User::factory(20)->create();
         $users = User::all();
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             Group::query()->create([
                 'name' => $this->faker->name(),
                 'description' => $this->faker->text(200),
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
 
         $friendStatus = ['accepted', 'pending'];
         foreach ($users as $user) {
-            for ($i = 0; $i < 20; $i++) {
+            for ($i = 0; $i < 5; $i++) {
                 $friendId = $users->random()->id;
                 $content = $this->faker->sentence;
                 $user->sentMessages()->create([
@@ -135,7 +135,7 @@ class DatabaseSeeder extends Seeder
 
         $channels = Channel::all();
         foreach ($channels as $channel) {
-            for ($i = 0; $i < 20; $i++) {
+            for ($i = 0; $i < 5; $i++) {
 
                 $channel->posts()->create([
                     'content' => $this->faker->paragraph(),
@@ -152,7 +152,7 @@ class DatabaseSeeder extends Seeder
 
         $posts = Post::all();
         foreach ($posts as $post) {
-            for ($i = 0; $i < 10; $i++) {
+            for ($i = 0; $i < 5; $i++) {
                 $post->comments()->create([
                     'content' => $this->faker->paragraph(),
                     'user_id' => $users->random()->id,
